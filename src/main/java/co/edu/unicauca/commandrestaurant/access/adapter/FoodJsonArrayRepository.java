@@ -7,7 +7,6 @@ package co.edu.unicauca.commandrestaurant.access.adapter;
 
 import co.edu.unicauca.commandrestaurant.domain.Food;
 import co.edu.unicauca.commandrestaurant.domain.FoodTypeEnum;
-import co.edu.unicauca.commandrestaurant.domain.decorator.CapitalFood;
 import co.edu.unicauca.commandrestaurant.domain.decorator.CryptFood;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,34 +33,74 @@ public class FoodJsonArrayRepository implements IFoodJsonRepository {
     }
 
     @Override
-    public Food getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<String> foods() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> listAux = new ArrayList<>();
+        for (Food dato : foods) {
+            listAux.add(dato.getId() + "," + dato.getName() + "," + dato.getType());
+        }
+        return listAux;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Food getById(int id) {
+        for (Food dato : foods) {
+            if (dato.getId() == id) {
+                return dato;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param food
+     * @return
+     */
     @Override
     public boolean add(Food food) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Food dato : foods) {
+            if (dato.equals(food)) {
+                return false;
+            }
+        }
+        foods.add(food);
+        return true;
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void remove(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Food dato : foods) {
+            if (dato.getId() == id) {
+                foods.remove(dato);
+                break;
+            }
+        }
     }
 
+    /**
+     *
+     * @param food
+     * @return
+     */
     @Override
     public boolean modify(Food food) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Food dato : foods) {
+            if (dato.getId() == food.getId()) {
+                foods.remove(dato);
+                foods.add(food);
+                return true;
+            }
+        }
+        return false;
     }
-
-    
-
-    
-
-    
 
 }

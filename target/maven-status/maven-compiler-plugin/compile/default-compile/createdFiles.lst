@@ -1,5 +1,6 @@
 co\edu\unicauca\commandrestaurant\access\adapter\FoodRepositoryMapAdapter.class
 co\edu\unicauca\commandrestaurant\presentation\GUIFood$8.class
+co\edu\unicauca\commandrestaurant\access\adapter\IFoodJsonRepository.class
 co\edu\unicauca\commandrestaurant\access\FoodImplArrayRepository.class
 co\edu\unicauca\commandrestaurant\domain\FindByIdCommand.class
 co\edu\unicauca\commandrestaurant\presentation\GUIFood$3.class
@@ -22,6 +23,7 @@ co\unicauca\commandRestaurant\infra\Utilities.class
 co\edu\unicauca\commandrestaurant\access\RepositoryFactory.class
 co\edu\unicauca\commandrestaurant\presentation\GUIFood.class
 co\edu\unicauca\commandrestaurant\domain\decorator\CapitalFood.class
+co\edu\unicauca\commandrestaurant\domain\decorator\CryptFood.class
 co\edu\unicauca\commandrestaurant\domain\UpdateCommand.class
 co\edu\unicauca\commandrestaurant\presentation\GUIFood$6.class
 co\edu\unicauca\commandrestaurant\access\adapter\FoodRepositoryJsonArrayAdapter.class
