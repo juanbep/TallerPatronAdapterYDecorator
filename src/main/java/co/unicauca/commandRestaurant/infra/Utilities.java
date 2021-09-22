@@ -71,7 +71,7 @@ public class Utilities {
      */
     public static String capitalize(String text) {
         if (!text.isEmpty()) {
-            StringBuilder sbt = new StringBuilder();
+            StringBuffer sbt = new StringBuffer();
             String[] partialText = text.split(" ");
             for (String partialText1 : partialText) {
                 if (!partialText1.equals("")) {
@@ -97,7 +97,7 @@ public class Utilities {
      */
     private static String capitalizeWord(String word) {
         if (!word.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
+            StringBuffer sb = new StringBuffer();
             sb.append(String.valueOf(word.charAt(0)).toUpperCase());
 
             if (word.length() >= 2) {
@@ -116,7 +116,7 @@ public class Utilities {
      * @return
      */
     private static String capitalizeWithLine(String wordWithLine) {
-        StringBuilder res = new StringBuilder();
+        StringBuffer res = new StringBuffer();
         String[] partialTextWithLine = wordWithLine.split("-");
         for (int r = 0; r < partialTextWithLine.length; r++) {
             res.append(capitalizeWord(partialTextWithLine[r]));

@@ -10,6 +10,7 @@ import co.edu.unicauca.commandrestaurant.domain.FindAllCommand;
 import co.edu.unicauca.commandrestaurant.domain.FindByIdCommand;
 import co.edu.unicauca.commandrestaurant.domain.FoodTypeEnum;
 import co.edu.unicauca.commandrestaurant.domain.UpdateCommand;
+import co.edu.unicauca.commandrestaurant.domain.decorator.CryptFood;
 import co.unicauca.commandRestaurant.infra.Messages;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -266,7 +267,7 @@ public class GUIFood extends javax.swing.JFrame {
      * @param type tipo de comida
      */
     private void addFood(int id, String name, FoodTypeEnum type) {
-        Food food = new CapitalFood(id, name, type);
+        Food food = new CryptFood(id, name, type);
 
         //Fija el comando del invoker
         invoker.setCommand(new CreateCommand(food));

@@ -28,8 +28,9 @@ public class FoodJsonArrayRepository implements IFoodJsonRepository {
     }
 
     private void initData() {
-        foods.add(new CryptFood(0, "Arroz", FoodTypeEnum.ENTRADA));
-        foods.add(new CryptFood(1, "jugo de mango", FoodTypeEnum.JUGO));
+        foods.add(new CryptFood(0, "Sopa de Verduras", FoodTypeEnum.ENTRADA));
+        foods.add(new CryptFood(1, "Jugo de Mango", FoodTypeEnum.JUGO));
+
     }
 
     @Override
