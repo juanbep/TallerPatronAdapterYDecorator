@@ -15,21 +15,15 @@ import java.util.List;
  */
 public class FoodRepositoryJsonArrayAdapter implements IFoodRepository {
 
-    /**
-     * Repsitorio adaptado
-     */
-    FoodJsonArrayRepository adaptedRepository;
+    private FoodJsonArrayRepository services;
 
-    /**
-     * Constructor
-     */
     public FoodRepositoryJsonArrayAdapter() {
-        adaptedRepository = new FoodJsonArrayRepository();
+        services = new FoodJsonArrayRepository();
     }
 
     @Override
     public Food findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return services.getById(id);
     }
 
     @Override
@@ -39,17 +33,17 @@ public class FoodRepositoryJsonArrayAdapter implements IFoodRepository {
 
     @Override
     public boolean create(Food food) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return services.add(food);
     }
 
     @Override
     public boolean update(Food food) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return services.modify(food);
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        services.remove(id);
     }
 
 }

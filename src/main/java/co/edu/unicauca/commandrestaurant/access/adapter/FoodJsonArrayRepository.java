@@ -8,68 +8,60 @@ package co.edu.unicauca.commandrestaurant.access.adapter;
 import co.edu.unicauca.commandrestaurant.domain.Food;
 import co.edu.unicauca.commandrestaurant.domain.FoodTypeEnum;
 import co.edu.unicauca.commandrestaurant.domain.decorator.CapitalFood;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import co.edu.unicauca.commandrestaurant.domain.decorator.CryptFood;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implementación del repositorio con un arreglo de String JSON
+ * repositorio que permite grabar y recuperar comidas en un arreglo String Json
  *
  * @author Beca98
  */
-public class FoodJsonArrayRepository {
+public class FoodJsonArrayRepository implements IFoodJsonRepository {
 
-    private static List<String> foods;
+    private static List<Food> foods;
 
     public FoodJsonArrayRepository() {
-
         if (foods == null) {
-            foods = new ArrayList<String>();
+            foods = new ArrayList<>();
             initData();
         }
     }
 
-    /**
-     * se inicializan los platos disponibles en un arreglo de String Json
-     */
     private void initData() {
-
-        CapitalFood principio = new CapitalFood(1, "Fríjoles", FoodTypeEnum.PRINCIPIO);
-        jsonReturn(principio);
-        CapitalFood entrada = new CapitalFood(2, "Sopa de verduras", FoodTypeEnum.ENTRADA);
-        jsonReturn(entrada);
-        CapitalFood jugo = new CapitalFood(3, "Jugo de mango", FoodTypeEnum.JUGO);
-        jsonReturn(jugo);
-
+        foods.add(new CryptFood(0, "Arroz", FoodTypeEnum.ENTRADA));
+        foods.add(new CryptFood(1, "jugo de mango", FoodTypeEnum.JUGO));
     }
 
-    private void jsonReturn(CapitalFood object) {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            foods.add(objectMapper.writeValueAsString(object));
-        } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block 
-            e.printStackTrace();
-        }
-
+    @Override
+    public Food getById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * Agrega una comida
-     *
-     * @param food comida a agregar
-     * @return true si la agrega, false en caso contrario
-     */
+    @Override
+    public List<String> foods() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public boolean add(Food food) {
-
-        return false;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void split() {
-
+    @Override
+    public void remove(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean modify(Food food) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
+
+    
 
 }

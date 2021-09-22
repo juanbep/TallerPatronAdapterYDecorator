@@ -7,6 +7,8 @@ package co.unicauca.commandRestaurant.infra;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Properties;
 
 /**
@@ -15,6 +17,11 @@ import java.util.Properties;
  * @author Libardo, Daniel
  */
 public class Utilities {
+
+    /**
+     * palabra para encrypt los datos
+     */
+    private static String ENCRYPT_KEY = "clave-compartida-no-reveloar-nunca";
 
     /**
      * Cargar una propiedadd de config.properties
@@ -64,15 +71,15 @@ public class Utilities {
      */
     public static String capitalize(String text) {
         if (!text.isEmpty()) {
-            StringBuffer sbt = new StringBuffer();
+            StringBuilder sbt = new StringBuilder();
             String[] partialText = text.split(" ");
-            for (int i = 0; i < partialText.length; i++) {
-                if (!partialText[i].equals("")) {
-
-                    if (partialText[i].contains("-")) { //composite words
-                        sbt.append(capitalizeWithLine(partialText[i]));
+            for (String partialText1 : partialText) {
+                if (!partialText1.equals("")) {
+                    if (partialText1.contains("-")) {
+                        //composite words
+                        sbt.append(capitalizeWithLine(partialText1));
                     } else {
-                        sbt.append(capitalizeWord(partialText[i]));
+                        sbt.append(capitalizeWord(partialText1));
                         sbt.append(" ");
                     }
                 }
@@ -90,7 +97,7 @@ public class Utilities {
      */
     private static String capitalizeWord(String word) {
         if (!word.isEmpty()) {
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append(String.valueOf(word.charAt(0)).toUpperCase());
 
             if (word.length() >= 2) {
@@ -109,7 +116,7 @@ public class Utilities {
      * @return
      */
     private static String capitalizeWithLine(String wordWithLine) {
-        StringBuffer res = new StringBuffer();
+        StringBuilder res = new StringBuilder();
         String[] partialTextWithLine = wordWithLine.split("-");
         for (int r = 0; r < partialTextWithLine.length; r++) {
             res.append(capitalizeWord(partialTextWithLine[r]));
@@ -120,4 +127,28 @@ public class Utilities {
         }
         return res.toString();
     }
+
+    /**
+     * Metodo que encripta un cadena que llega por parametro
+     *
+     * @param word palabra a encriptar
+     * @return palabra encriptada
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public static String encrypt(String word) throws UnsupportedEncodingException {
+        return Base64.getEncoder().encodeToString(word.getBytes("utf-8"));
+    }
+
+    /**
+     * Metodo que desencripta una palabra que llega por parametro
+     *
+     * @param word palabra encriptada
+     * @return palabra desencriptada
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public static String decrypt(String word) throws UnsupportedEncodingException {
+        byte[] decode = Base64.getDecoder().decode(word.getBytes());
+        return new String(decode, "utf-8");
+    }
+
 }
